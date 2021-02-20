@@ -10,6 +10,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.ScrollView;
+
 
 import org.apache.commons.io.FileUtils;
 
@@ -17,6 +21,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.File;
+import java.nio.charset.Charset;
+import java.util.TooManyListenersException;
+
+
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
 
-            @Override
+           // @Override
             public void onItemLongClick(int position) {
                 items.remove(position);
                 itemsAdapter.notifyItemRemoved(position);
@@ -51,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 saveItems();
             }
         };
+
         itemsAdapter = new ItemsAdapter(items, OnLongClickListener);
         rvItems.setAdapter(itemsAdapter);
         rvItems.setLayoutManager(new LinearLayoutManager(this));
