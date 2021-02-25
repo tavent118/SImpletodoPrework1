@@ -46,14 +46,13 @@ public class MainActivity extends AppCompatActivity {
 
         loadItems();
 
-        ItemsAdapter.OnLongClickListener onLongClickListener = new ItemsAdapter.OnLongClickListener() {
-            @Override
+
+            ItemsAdapter.OnLongClickListener onLongClickListener = new ItemsAdapter.OnLongClickListener() {
+
+
+
+                @Override
             public void onItemLongClicked(int position) {
-
-            }
-
-           // @Override
-            public void onItemLongClick(int position) {
                 items.remove(position);
                 itemsAdapter.notifyItemRemoved(position);
                 Toast.makeText(getApplicationContext(), "Item was removed", Toast.LENGTH_SHORT).show();
@@ -61,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        itemsAdapter = new ItemsAdapter(items, OnLongClickListener);
+        itemsAdapter = new ItemsAdapter(items, onLongClickListener);
         rvItems.setAdapter(itemsAdapter);
         rvItems.setLayoutManager(new LinearLayoutManager(this));
 
@@ -83,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
         private void loadItems() {
             try {
-                items = new ArrayList(FileUtils.readLines(getDataFile(), Charsets.defaultCharser()));
+                items = new ArrayList(FileUtils.readLines(getDataFile(), Charset.defaultCharset()));
             } catch (IOException e) {
                 Log.e("MainActivity", "Error reading items", e);
                 items = new ArrayList<>();
